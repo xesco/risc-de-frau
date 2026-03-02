@@ -1,16 +1,8 @@
 # Risc de Frau en Contractació Pública Catalana
 
-Automated analysis of the 1,000 highest-value public contracts published on [contractes.cat](https://contractes.cat) during 2025. The report detects procedural anomalies that are statistically associated with fraud risk — it does **not** accuse any company or public body of wrongdoing.
+Automated analysis of the 1,000 highest-value public contracts published on [contractes.cat](https://contractes.cat) during 2025. The report flags procedural anomalies statistically associated with fraud risk — it does **not** accuse any company or public body of wrongdoing.
 
 🔗 **Live report**: [xesco.github.io/risc-de-frau](https://xesco.github.io/risc-de-frau)
-
----
-
-## ⚠️ Disclaimer
-
-The indicators in this report flag **procedural anomalies**, not proven fraud. A contract appearing in any of the tables means it matches a statistical pattern — single bidder, non-open procedure, award price near the budget ceiling, or repeated award to the same supplier — that public procurement research associates with elevated risk.
-
-**Companies and public bodies listed here are not accused of any illegal or unethical conduct.** Many flagged contracts have entirely legitimate explanations: regulated markets, genuine urgency, limited supplier pools, patent protection, or sector-specific tariffs. The purpose of this report is transparency and informed public debate, not accusation.
 
 ---
 
@@ -75,3 +67,9 @@ Each section in the report also shows the exact CLI command used to generate it 
 ## License
 
 Report and analysis code: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Data © Generalitat de Catalunya, licensed under [Open Data Commons](https://opendata-commons.org/).
+
+---
+
+## ⚠️ Disclaimer
+
+This report flags **procedural anomalies**, not proven fraud. Flagged companies and public bodies are not accused of any illegal or unethical conduct — many contracts have entirely legitimate explanations. The purpose is transparency and informed public debate.
