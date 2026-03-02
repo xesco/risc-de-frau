@@ -255,18 +255,34 @@ function copyCode(btn) {
 
 // Summary cards
 const cards = [
-  { label: 'Contractes analitzats', value: DATA.meta.total_contracts.toLocaleString('ca-ES'), icon: '📋', color: 'text-slate-300' },
-  { label: 'F1 · Licitador únic >1M€', value: DATA.f1_single_bidder.length + '+', icon: '🚨', color: 'text-red-400', sub: fmtM(DATA.f1_single_bidder.reduce((s,c)=>s+c.amount,0)) },
-  { label: 'F2 · Procediment no obert >500K', value: DATA.f2_non_open.length + '+', icon: '🔒', color: 'text-orange-400', sub: fmtM(DATA.f2_non_open.reduce((s,c)=>s+c.amount,0)) },
-  { label: 'F3 · Adjudicació ≈ pressupost', value: DATA.f3_close_budget.length + '+', icon: '🎯', color: 'text-yellow-400', sub: 'rang 97–101%' },
-  { label: 'F4 · Guanyadors repetits', value: DATA.f4_repeat_winners.length, icon: '🔁', color: 'text-blue-400', sub: 'parelles empresa/òrgan' },
+  {
+    label: 'Contractes analitzats', value: DATA.meta.total_contracts.toLocaleString('ca-ES'), icon: '📋', color: 'text-slate-300',
+    desc: "Els 1.000 contractes de major valor publicats a contractes.cat l'any 2025. Representen la majoria del volum econòmic de la contractació pública catalana.",
+  },
+  {
+    label: 'F1 · Licitador únic >1M€', value: DATA.f1_single_bidder.length + '+', icon: '🚨', color: 'text-red-400', sub: fmtM(DATA.f1_single_bidder.reduce((s,c)=>s+c.amount,0)),
+    desc: "Contractes per sobre d'1M€ on només una empresa va presentar oferta. L'absència de competència elimina la pressió sobre el preu i les condicions.",
+  },
+  {
+    label: 'F2 · Procediment no obert >500K', value: DATA.f2_non_open.length + '+', icon: '🔒', color: 'text-orange-400', sub: fmtM(DATA.f2_non_open.reduce((s,c)=>s+c.amount,0)),
+    desc: "Contractes adjudicats per via negociada o restringida, sense licitació pública oberta. La llei permet excepcions, però per sobre de 500K€ exigeix justificació molt acurada.",
+  },
+  {
+    label: 'F3 · Adjudicació ≈ pressupost', value: DATA.f3_close_budget.length + '+', icon: '🎯', color: 'text-yellow-400', sub: 'rang 97–101%',
+    desc: "Contractes on el preu final s'acosta molt al pressupost màxim (entre el 97% i el 101%). Pot indicar que el licitador coneixia d'antuvi el sostre pressupostari.",
+  },
+  {
+    label: 'F4 · Guanyadors repetits', value: DATA.f4_repeat_winners.length, icon: '🔁', color: 'text-blue-400', sub: 'parelles empresa/òrgan',
+    desc: "Parelles empresa–òrgan contractant on la mateixa empresa guanya 3 o més contractes superiors a 200K€. Suggereix una relació de dependència o manca de concurrència real.",
+  },
 ];
 document.getElementById('summary-cards').innerHTML = cards.map(c => `
   <div class="card text-center">
     <div class="text-3xl mb-2">${c.icon}</div>
     <div class="text-xl font-bold ${c.color}">${c.value}</div>
     ${c.sub ? `<div class="text-xs text-slate-500 mt-0.5">${c.sub}</div>` : ''}
-    <div class="text-xs text-slate-500 mt-1">${c.label}</div>
+    <div class="text-xs font-semibold text-slate-400 mt-2">${c.label}</div>
+    <div class="text-xs text-slate-600 mt-1 text-left leading-relaxed">${c.desc}</div>
   </div>`).join('');
 
 // Charts
