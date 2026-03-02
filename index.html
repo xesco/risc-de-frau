@@ -79,7 +79,7 @@
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
 done</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les dues gràfiques es generen directament a partir d'aquest conjunt.</p>
   </div>
 </details>
   </div>
@@ -96,7 +96,7 @@ done</code></pre>
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
 done</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les dues gràfiques es generen directament a partir d'aquest conjunt.</p>
   </div>
 </details>
   </div>
@@ -124,9 +124,13 @@ done</code></pre>
   <div class="query-body mt-2 relative">
     <pre class="query-pre"><code>for page in $(seq 1 20); do
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
-done</code></pre>
+done
+
+# Filtre aplicat (Python):
+# ofertes_rebudes == '1'  →  un sol licitador
+# import_adjudicacio_amb_iva > 1_000_000</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Recupera els contractes base i filtra els que tenen exactament un ofertant i import superior a 1M€.</p>
   </div>
 </details>
 </div>
@@ -153,9 +157,13 @@ done</code></pre>
   <div class="query-body mt-2 relative">
     <pre class="query-pre"><code>for page in $(seq 1 20); do
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
-done</code></pre>
+done
+
+# Filtre aplicat (Python):
+# procediment not in ('obert', 'obert simplificat', '')
+# import_adjudicacio_amb_iva > 500_000</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Exclou els procediments oberts i simplificats; qualsevol altra via (negociat, restringit…) per sobre de 500K€ activa el flag.</p>
   </div>
 </details>
 </div>
@@ -182,9 +190,13 @@ done</code></pre>
   <div class="query-body mt-2 relative">
     <pre class="query-pre"><code>for page in $(seq 1 20); do
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
-done</code></pre>
+done
+
+# Filtre aplicat (Python):
+# ratio = import_adjudicacio_amb_iva / pressupost_licitacio_amb
+# 0.97 <= ratio <= 1.01  and  pressupost > 1_000_000</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Calcula la ràtio import adjudicat / pressupost base. Un valor entre 97% i 101% en contractes grans suggereix coneixement previ del sostre.</p>
   </div>
 </details>
 </div>
@@ -211,9 +223,14 @@ done</code></pre>
   <div class="query-body mt-2 relative">
     <pre class="query-pre"><code>for page in $(seq 1 20); do
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
-done</code></pre>
+done
+
+# Filtre aplicat (Python):
+# agrupa per (nom_organ, denominacio_adjudicatari)
+# conserva parelles amb >= 3 contractes on import > 200_000
+# ordena per import total acumulat desc</code></pre>
     <button class="copy-btn" onclick="copyCode(this)">Copia</button>
-    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+    <p class="text-slate-500 text-xs mt-2">Detecta empreses que guanyen repetidament al mateix òrgan en contractes significatius, possible senyal de mercat captiu.</p>
   </div>
 </details>
 </div>

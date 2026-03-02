@@ -46,9 +46,48 @@ def query_block(cmd, note=None):
 </details>"""
 
 
-Q_BASE = query_block(
-    "for page in $(seq 1 20); do\n  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw\ndone",
-    "Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.",
+Q_FETCH = (
+    "for page in $(seq 1 20); do\n"
+    "  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw\n"
+    "done"
+)
+
+Q_CHARTS = query_block(
+    Q_FETCH,
+    "Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les dues gràfiques es generen directament a partir d'aquest conjunt."
+)
+
+Q_F1 = query_block(
+    Q_FETCH + "\n\n"
+    "# Filtre aplicat (Python):\n"
+    "# ofertes_rebudes == '1'  →  un sol licitador\n"
+    "# import_adjudicacio_amb_iva > 1_000_000",
+    "Recupera els contractes base i filtra els que tenen exactament un ofertant i import superior a 1M€."
+)
+
+Q_F2 = query_block(
+    Q_FETCH + "\n\n"
+    "# Filtre aplicat (Python):\n"
+    "# procediment not in ('obert', 'obert simplificat', '')\n"
+    "# import_adjudicacio_amb_iva > 500_000",
+    "Exclou els procediments oberts i simplificats; qualsevol altra via (negociat, restringit…) per sobre de 500K€ activa el flag."
+)
+
+Q_F3 = query_block(
+    Q_FETCH + "\n\n"
+    "# Filtre aplicat (Python):\n"
+    "# ratio = import_adjudicacio_amb_iva / pressupost_licitacio_amb\n"
+    "# 0.97 <= ratio <= 1.01  and  pressupost > 1_000_000",
+    "Calcula la ràtio import adjudicat / pressupost base. Un valor entre 97% i 101% en contractes grans suggereix coneixement previ del sostre."
+)
+
+Q_F4 = query_block(
+    Q_FETCH + "\n\n"
+    "# Filtre aplicat (Python):\n"
+    "# agrupa per (nom_organ, denominacio_adjudicatari)\n"
+    "# conserva parelles amb >= 3 contractes on import > 200_000\n"
+    "# ordena per import total acumulat desc",
+    "Detecta empreses que guanyen repetidament al mateix òrgan en contractes significatius, possible senyal de mercat captiu."
 )
 
 DEEP_DIVE_QUERIES = {
@@ -143,13 +182,13 @@ def main():
     <div class="section-title">Distribució per procediment</div>
     <div class="section-sub">Nombre de contractes per tipus de procediment</div>
     <canvas id="chartProc" height="220"></canvas>
-    {Q_BASE}
+    {Q_CHARTS}
   </div>
   <div class="card">
     <div class="section-title">Valor total per indicador de risc</div>
     <div class="section-sub">Euros en contractes que activen cada flag (milions €)</div>
     <canvas id="chartFlags" height="220"></canvas>
-    {Q_BASE}
+    {Q_CHARTS}
   </div>
 </div>
 
@@ -168,7 +207,7 @@ def main():
       <tbody></tbody>
     </table>
   </div>
-  {Q_BASE}
+  {Q_F1}
 </div>
 
 <!-- FLAG 2 -->
@@ -186,7 +225,7 @@ def main():
       <tbody></tbody>
     </table>
   </div>
-  {Q_BASE}
+  {Q_F2}
 </div>
 
 <!-- FLAG 3 -->
@@ -204,7 +243,7 @@ def main():
       <tbody></tbody>
     </table>
   </div>
-  {Q_BASE}
+  {Q_F3}
 </div>
 
 <!-- FLAG 4 -->
@@ -222,7 +261,7 @@ def main():
       <tbody></tbody>
     </table>
   </div>
-  {Q_BASE}
+  {Q_F4}
 </div>
 
 <!-- DEEP DIVES -->
