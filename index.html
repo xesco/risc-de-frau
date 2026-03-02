@@ -26,6 +26,16 @@
     a { color: #60a5fa; text-decoration: none; }
     a:hover { text-decoration: underline; }
     .scroll-table { overflow-x: auto; max-height: 480px; overflow-y: auto; border-radius: 0.5rem; border: 1px solid #334155; }
+
+    /* Query blocks */
+    .query-block { border-top: 1px solid #1e293b; padding-top: 0.75rem; }
+    .query-block summary { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .query-block[open] .query-arrow { display: inline-block; transform: rotate(90deg); }
+    .query-pre { background: #0f172a; border: 1px solid #334155; border-radius: 0.5rem; padding: 1rem 1rem 1rem 1rem; font-size: 0.78rem; font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; color: #7dd3fc; overflow-x: auto; white-space: pre; line-height: 1.6; }
+    .query-body { position: relative; }
+    .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: #1e293b; border: 1px solid #334155; color: #94a3b8; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 0.3rem; cursor: pointer; transition: all 0.15s; }
+    .copy-btn:hover { background: #334155; color: #e2e8f0; }
+    .copy-btn.copied { border-color: #22c55e; color: #22c55e; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -62,11 +72,35 @@
     <div class="section-title">Distribució per procediment</div>
     <div class="section-sub">Nombre de contractes per tipus de procediment</div>
     <canvas id="chartProc" height="220"></canvas>
+    <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
   </div>
   <div class="card">
     <div class="section-title">Valor total per indicador de risc</div>
     <div class="section-sub">Euros en contractes que activen cada flag (milions €)</div>
     <canvas id="chartFlags" height="220"></canvas>
+    <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
   </div>
 </div>
 
@@ -87,6 +121,18 @@
       <tbody></tbody>
     </table>
   </div>
+  <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
 </div>
 
 <!-- FLAG 2 -->
@@ -106,6 +152,18 @@
       <tbody></tbody>
     </table>
   </div>
+  <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
 </div>
 
 <!-- FLAG 3 -->
@@ -125,6 +183,18 @@
       <tbody></tbody>
     </table>
   </div>
+  <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
 </div>
 
 <!-- FLAG 4 -->
@@ -144,6 +214,18 @@
       <tbody></tbody>
     </table>
   </div>
+  <details class="query-block mt-4">
+  <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+    <span class="query-arrow">▶</span> Consulta CLI utilitzada
+  </summary>
+  <div class="query-body mt-2 relative">
+    <pre class="query-pre"><code>for page in $(seq 1 20); do
+  contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
+done</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+    <p class="text-slate-500 text-xs mt-2">Recupera els 1.000 contractes de major valor de 2025 (20 pàgines × 50 resultats). Les flags F1–F4 s'apliquen com a filtre posterior sobre aquest conjunt.</p>
+  </div>
+</details>
 </div>
 
 <!-- DEEP DIVES -->
@@ -159,7 +241,7 @@
     <p>Les dades provenen del <strong class="text-slate-400">Registre Públic de Contractes de Catalunya</strong> a través de la API pública de <a href="https://contractes.cat">contractes.cat</a>. S'han analitzat els <strong class="text-slate-400">1.000 contractes de major valor</strong> publicats l'any 2025.</p>
     <p>Els indicadors de risc detecten <strong class="text-slate-400">patrons estadísticament anòmals</strong>, no proven irregularitat legal. Algunes adjudicacions per licitador únic o procediment negociat estan legalment justificades (urgència, patent, mercat limitat, etc.).</p>
     <p>Per a les tarifes socials i sanitàries, preus propers al 100% del pressupost base pot reflectir simplement un mercat de tarifa regulada sense marge de negociació.</p>
-    <p class="text-slate-600">Codi font i dades: <a href="https://github.com">GitHub</a> — Llicència: CC BY 4.0</p>
+    <p class="text-slate-600">Codi font i dades: <a href="https://github.com/xesco/risc-de-frau">GitHub</a> — Llicència: CC BY 4.0</p>
   </div>
 </div>
 
@@ -172,6 +254,15 @@ const DATA = {"meta": {"total_contracts": 1000, "generated": "2025", "source": "
 const fmt = n => new Intl.NumberFormat('ca-ES', {style:'currency', currency:'EUR', maximumFractionDigits:0}).format(n);
 const fmtM = n => (n/1e6).toFixed(1) + 'M€';
 const trunc = (s, n=55) => s && s.length > n ? s.slice(0,n)+'…' : (s||'—');
+
+function copyCode(btn) {
+  const code = btn.closest('.query-body').querySelector('code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '✓ Copiat';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copia'; btn.classList.remove('copied'); }, 2000);
+  });
+}
 
 // --- Summary cards ---
 const cards = [
@@ -290,7 +381,8 @@ const deepDives = [
     flagColors: ['flag-red','flag-red','flag-orange'],
     summary: `L'IMSS ha adjudicat contractes milionaris a un cercle reduït d'empreses exclusivament via <strong>procediment negociat sense publicitat</strong>, la via de menys concurrència prevista per la llei. En els darrers anys, <strong>SUARA SERVEIS SCCL</strong> ha acumulat <strong>+159M€</strong> (24 contractes) i <strong>SERVISAR SERVICIOS SOCIALES SL</strong> <strong>+93M€</strong> (2 contractes), ambdues amb un únic ofertant. Destaca també <strong>AVORIS RETAIL DIVISION SL</strong> amb +101M€ en 8 contractes.`,
     companies: DATA.deep_dive.imss_suara_servisar.companies,
-    note: 'SUARA és una cooperativa de serveis socials; la relació orgànica amb les entitats contractants mereixeria escrutini independent.'
+    note: 'SUARA és una cooperativa de serveis socials; la relació orgànica amb les entitats contractants mereixeria escrutini independent.',
+    query: `contractes organ-top-companies --organ "Institut Municipal de Serveis Socials" --limit 10 --raw`
   },
   {
     id: 'sem',
@@ -301,7 +393,8 @@ const deepDives = [
     flagColors: ['flag-red','flag-red','flag-orange'],
     summary: `El SEM concentra <strong>+654M€</strong> adjudicats a FALCK SERVICIOS SANITARIOS en 4 contractes, tots amb l'import d'adjudicació igual o pràcticament igual al pressupost base. Dos contractes (278M€ i 231M€) van ser adjudicats exactament al <strong>100% del pressupost</strong>. El mercat de transport sanitari urgent és un oligopoli estructural on canviar de proveïdor és extremament difícil, el que pot justificar parcialment el procediment, però no elimina el risc de sobre-preus.`,
     companies: DATA.deep_dive.sem_falck.companies,
-    note: "FALCK és l'empresa de serveis d'emergències sanitàries més gran d'Espanya i opera amb llicències exclusives per zones."
+    note: "FALCK és l'empresa de serveis d'emergències sanitàries més gran d'Espanya i opera amb llicències exclusives per zones.",
+    query: `contractes organ-top-companies --organ "Sistema d'Emergències Mèdiques (SEM)" --limit 10 --raw`
   },
   {
     id: 'ctti',
@@ -312,7 +405,8 @@ const deepDives = [
     flagColors: ['flag-orange','flag-orange','flag-yellow'],
     summary: `El CTTI ha adjudicat a diverses societats del <strong>Grup Seidor</strong> (Seidor Consulting, Seidor Solutions, Seidor Opentrends, SBS Seidor...) un total de <strong>+97M€</strong> en serveis IT. Seidor Consulting concentra 16 contractes per 79M€, molts amb un sol licitador. La fragmentació en filials permet mantenir el proveïdor de fet mentre es compleixen formalment els requisits de concurrència per lots.`,
     companies: DATA.deep_dive.ctti_seidor.companies,
-    note: 'La fragmentació de contractes grans en lots assignats a filials del mateix grup és una pràctica que dilueix la concurrència real.'
+    note: 'La fragmentació de contractes grans en lots assignats a filials del mateix grup és una pràctica que dilueix la concurrència real.',
+    query: `contractes organ-top-companies --organ "Centre de Telecomunicacions i Tecnologies de la Informació de la Generalitat de Catalunya (CTTI)" --limit 10 --raw`
   }
 ];
 
@@ -345,7 +439,16 @@ deepDives.forEach(dd => {
         <tbody>${companiesRows}</tbody>
       </table>
     </div>
-    <p class="text-xs text-slate-600 italic">${dd.note}</p>
+    <p class="text-xs text-slate-600 italic mb-3">${dd.note}</p>
+    <details class="query-block">
+      <summary class="cursor-pointer text-xs text-slate-500 hover:text-slate-300 select-none flex items-center gap-1.5">
+        <span class="query-arrow">▶</span> Consulta CLI utilitzada
+      </summary>
+      <div class="query-body mt-2 relative">
+        <pre class="query-pre"><code>${dd.query}</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+      </div>
+    </details>
   </div>`;
 });
 </script>
