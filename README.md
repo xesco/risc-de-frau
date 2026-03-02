@@ -41,17 +41,30 @@ It also includes three in-depth sections on the most significant findings:
 
 ## Regenerating the report
 
+The report is a single baked `index.html` file. The data was fetched and analysed using the following commands:
+
 ```bash
 # Install the CLI
 npm install -g @gerardgimenezadsuar/contractes-cli
 
-# Fetch top 1000 contracts (2025, sorted by amount)
+# Fetch top 1000 contracts (2025, sorted by amount desc)
 for page in $(seq 1 20); do
   contractes search-contracts --year 2025 --sort amount-desc --page $page --raw
-done > raw.jsonl
+done
 
-# Then run the analysis and HTML generation scripts (see scripts/ directory)
+# Deep-dive per organ
+contractes organ-top-companies --organ "Institut Municipal de Serveis Socials" --limit 10 --raw
+contractes organ-top-companies --organ "Sistema d'Emergències Mèdiques (SEM)" --limit 10 --raw
+contractes organ-top-companies --organ "Centre de Telecomunicacions i Tecnologies de la Informació de la Generalitat de Catalunya (CTTI)" --limit 10 --raw
+
+# Company lookup
+contractes search-companies --search "SUARA" --raw
+contractes search-companies --search "SERVISAR" --raw
+contractes search-companies --search "FALCK" --raw
+contractes search-companies --search "SEIDOR" --raw
 ```
+
+Each section in the report also shows the exact CLI command used to generate it — click **"Consulta CLI utilitzada"** under any table or chart.
 
 ---
 
